@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         send.setOnClickListener {
-            val text = textToSend.text.toString()
+            val text = "Yeah"
             val viewModel = SocketViewModel(text)
             if (viewModel != null) {
                 textReceived.text = getString(R.string.Success)

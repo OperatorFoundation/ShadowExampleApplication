@@ -25,7 +25,7 @@ class SocketViewModel(text: String) : ViewModel() {
         thread {
             val password = "1234"
             val config = ShadowConfig(password, "AES-128-GCM")
-            val shadowSocket = ShadowSocket(config, "159.203.158.90", 2345)
+            val shadowSocket = ShadowSocket(config, "127.0.0.1", 2222)
             println("Config init successful!")
             val server = ServerSocket(2345)
             server.accept()
