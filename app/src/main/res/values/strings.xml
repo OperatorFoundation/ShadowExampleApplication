@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ShadowExampleApplication</string>
+    <string name="textToSend">textToSend</string>
+    <string name="send">Send</string>
+    <string name="textReceived">TextView</string>
+    <string name="Success">Success</string>
+</resources>
