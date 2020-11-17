@@ -5,13 +5,20 @@ import androidx.lifecycle.viewModelScope
 import org.operatorfoundation.shapeshifter.shadow.kotlin.ShadowConfig
 import org.operatorfoundation.shapeshifter.shadow.kotlin.ShadowSocket
 import org.operatorfoundation.shapeshifter.shadow.kotlin.readNBytes
-import java.net.ServerSocket
 import kotlin.concurrent.thread
 
 
 
 @ExperimentalUnsignedTypes
-class SocketViewModel(text: String) : ViewModel() {
+class SocketViewModel(text: String) : ViewModel()
+{
+    val config = ShadowConfig("1234", "AES-128-GCM")
+    val httpRequest  = "GET / HTTP/1.0\r\n\r\n"
+    val textBytes = text.toByteArray()
+    val textLength = textBytes.size.toByte()
+    val lengthByteArray = byteArrayOf(textLength)
+
+
     init {
         viewModelScope
 //        thread {
@@ -23,25 +30,25 @@ class SocketViewModel(text: String) : ViewModel() {
 //        }
 
         thread {
-            val password = "1234"
-            val config = ShadowConfig(password, "AES-128-GCM")
-            val shadowSocket = ShadowSocket(config, "127.0.0.1", 2222)
-            println("Config init successful!")
-            val server = ServerSocket(2345)
-            server.accept()
-            val httpResponse  = "GET / HTTP/1.0\r\n\r\n"
-            shadowSocket.outputStream.write(httpResponse.toByteArray())
+            val shadowSocket = ShadowSocket(config, "159.203.158.90", 2345)
+
+            // Send a request to the server
+            shadowSocket.outputStream.write(httpRequest.toByteArray())
             shadowSocket.outputStream.flush()
-            val textBytes = text.toByteArray()
-            val textLength = textBytes.size.toByte()
-            val lengthByteArray = byteArrayOf(textLength)
+
+            val response = readNBytes(shadowSocket.inputStream, 1)
+            val inputLength = response[0].toInt()
+            val buffer = ByteArray(inputLength)
+
+
+            println("Config init successful!")
+
+            shadowSocket.outputStream.flush()
             shadowSocket.outputStream.write(lengthByteArray)
             shadowSocket.outputStream.write(textBytes)
             shadowSocket.outputStream.flush()
             println("Write successful")
-            val receiveTextLengthBytes = readNBytes(shadowSocket.inputStream, 1)
-            val inputLength = receiveTextLengthBytes[0].toInt()
-            val buffer = ByteArray(inputLength)
+
             shadowSocket.inputStream.read(buffer)
             if (String(buffer) == text) {
                 println("read successful")
