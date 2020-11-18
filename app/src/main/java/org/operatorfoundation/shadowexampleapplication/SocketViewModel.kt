@@ -8,10 +8,9 @@ import org.operatorfoundation.shapeshifter.shadow.kotlin.ShadowSocket
 import kotlin.concurrent.thread
 
 @ExperimentalUnsignedTypes
-class SocketViewModel : ViewModel()
-{
+class SocketViewModel : ViewModel() {
     private val config = ShadowConfig("1234", "AES-128-GCM")
-    private val httpRequest  = "GET / HTTP/1.0\r\n\r\n"
+    private val httpRequest = "GET / HTTP/1.0\r\n\r\n"
     private val textBytes = httpRequest.toByteArray()
     private val buffer = ByteArray(2)
 
@@ -28,9 +27,9 @@ class SocketViewModel : ViewModel()
 
             // Read the data
             val bytesRead = shadowSocket.inputStream.read(buffer)
-            if (bytesRead !=0) {
+            if (bytesRead != 0) {
                 println("Read successful!")
-                Log.i("Read successful!","Read Successful!")
+                Log.i("Read successful!", "Read Successful!")
             }
 
             // Closes the socket
@@ -38,5 +37,4 @@ class SocketViewModel : ViewModel()
 
         }
     }
-
 }
