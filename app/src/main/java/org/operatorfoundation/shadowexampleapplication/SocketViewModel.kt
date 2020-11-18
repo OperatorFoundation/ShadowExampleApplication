@@ -1,5 +1,6 @@
 package org.operatorfoundation.shadowexampleapplication
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import org.operatorfoundation.shapeshifter.shadow.kotlin.ShadowConfig
@@ -26,7 +27,11 @@ class SocketViewModel : ViewModel()
             shadowSocket.outputStream.flush()
 
             // Read the data
-            shadowSocket.inputStream.read(buffer)
+            val bytesRead = shadowSocket.inputStream.read(buffer)
+            if (bytesRead !=0) {
+                println("Read successful!")
+                Log.i("Read successful!","Read Successful!")
+            }
 
             // Closes the socket
             shadowSocket.close()
