@@ -18,6 +18,24 @@ ShapeshifterAndroidKotlin dependency setup:
 
 	2) add the dependency in your MODULE's build.gradle:
 		dependencies {
-    	        implementation 'com.github.OperatorFoundation:ShapeshifterAndroidKotlin:0.2.1'
+    	        implementation 'com.github.OperatorFoundation:ShapeshifterAndroidKotlin:0.2.2'
     	        implementation 'org.bouncycastle:bcpkix-jdk15on:1.58'
+    	        implementation 'com.github.joshjdevl.libsodiumjni:libsodium-jni-aar:2.0.2'
+    	        testImplementation 'com.github.joshjdevl.libsodiumjni:libsodium-jni-aar:2.0.2'
+                androidTestImplementation 'com.github.joshjdevl.libsodiumjni:libsodium-jni-aar:2.0.2'
     	}
+
+    3) add the following to your AndroidManifest.xml:
+        <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            package="org.YourPackagesName">
+
+            <uses-permission android:name="android.permission.INTERNET" />
+            <application
+                tools:replace="android:allowBackup"
+                ...
+            </application>
+            ...
+        </manifest>
+
+    4) Make sure the min SDK in your build.gradle is 29
