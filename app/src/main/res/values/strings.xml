@@ -1,8 +1,18 @@
 <resources>
     <string name="app_name">ShadowExampleApplication</string>
-    <string name="textToSend">textToSend</string>
-    <string name="send">Send</string>
-    <string name="textReceived">Press Send to Start</string>
-    <string name="Finished">Finished</string>
+    <string name="ChaChaTest">ChaChaTest</string>
+    <string name="AESTest">AESTest</string>
+    <string name="output">Output</string>
+    <string name="Success">Success</string>
     <string name="Fail">Fail</string>
+    <string name="Empty_String">Empty_String</string>
+    <string name="outcome">Outcome</string>
+    <string name="okhttpchacha">OkhttpChaCha</string>
+    <string name="okhttpaes">OkhttpAES</string>
 </resources>
+<!--    <string name="textToSend">textToSend</string>-->
+<!--    <string name="send">Send</string>-->
+<!--    <string name="textReceived">Press Send to Start</string>-->
+<!--    <string name="Finished">Finished</string>-->
+<!--    <string name="Fail">Fail</string>-->
+<!--</resources>-->
