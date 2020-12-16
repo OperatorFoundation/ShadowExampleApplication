@@ -166,7 +166,7 @@ MainActivity : AppCompatActivity() {
                     val client: OkHttpClient = OkHttpClient.Builder()
                         .socketFactory(ShadowSocketFactory(sConfig, host, port)).build()
 
-                    val request: Request = Request.Builder().url("https://foo.com").build()
+                    val request: Request = Request.Builder().url("http://foo.com").build()
 
                     try {
                         client.newCall(request).execute()
