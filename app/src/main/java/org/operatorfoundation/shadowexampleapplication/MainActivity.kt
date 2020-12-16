@@ -169,8 +169,19 @@ MainActivity : AppCompatActivity() {
                     val request: Request = Request.Builder().url("http://foo.com").build()
 
                     try {
-                        client.newCall(request).execute()
+                        val response = client.newCall(request).execute()
+                        val body = response.body
+                        runOnUiThread{
+                            body?.let {output.text = body.string()}
+                            if (response.code == 200) {
+                                outcome.setText(R.string.Success)
+                            }
+                        }
                     } catch (e: IOException) {
+                        runOnUiThread {
+                            outcome.setText(R.string.Fail)
+                            output.text = e.toString()
+                        }
                         e.printStackTrace()
                     }
 
@@ -180,6 +191,7 @@ MainActivity : AppCompatActivity() {
                         output.text = e.toString()
                     }
                     e.printStackTrace()
+
                 } catch (e: NoSuchAlgorithmException) {
                     runOnUiThread {
                         outcome.setText(R.string.Fail)
