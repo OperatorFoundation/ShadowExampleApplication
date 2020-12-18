@@ -20,6 +20,9 @@ ShapeshifterAndroidKotlin dependency setup:
     	        implementation 'com.github.joshjdevl.libsodiumjni:libsodium-jni-aar:2.0.2'
     	        testImplementation 'com.github.joshjdevl.libsodiumjni:libsodium-jni-aar:2.0.2'
                 androidTestImplementation 'com.github.joshjdevl.libsodiumjni:libsodium-jni-aar:2.0.2'
+
+                // You can add the following for okhttp support:
+                implementation("com.squareup.okhttp3:okhttp:4.9.0")
     	}
 
     3) Make sure the min SDK in your build.gradle is 29 in each project/app related build.gradle
