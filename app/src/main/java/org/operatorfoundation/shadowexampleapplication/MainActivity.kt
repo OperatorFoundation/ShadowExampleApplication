@@ -41,26 +41,6 @@ MainActivity : AppCompatActivity() {
             output.text = ""
             Thread {
                 try {
-
-                    //OKHTTP Stuff
-                    val host = "159.203.158.90"
-                    val port = 2345
-
-                    val sConfig = ShadowConfig("1234", "CHACHA20-IETF-POLY1305")
-                    val client: OkHttpClient = OkHttpClient.Builder()
-                        .socketFactory(ShadowSocketFactory(sConfig, host, port)).build()
-
-                    val request: Request = Request.Builder().url("https://foo.com").build()
-
-                    try {
-                        client.newCall(request).execute()
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-
-
-
-
                     // Create the socket
                     val config = ShadowConfig("1234", "CHACHA20-IETF-POLY1305")
                     val shadowSocket = ShadowSocket(config, "159.203.158.90", 2345)
